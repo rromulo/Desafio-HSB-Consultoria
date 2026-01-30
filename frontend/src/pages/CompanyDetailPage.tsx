@@ -86,7 +86,6 @@ const CompanyDetailPage: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header e Navegação */}
       <div className="flex justify-between items-start">
         <div>
           <Link
@@ -109,17 +108,6 @@ const CompanyDetailPage: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="flex space-x-3">
-          <button
-            onClick={handleDelete}
-            disabled={deleting}
-            className="flex items-center px-4 py-2 text-sm text-red-600 hover:text-red-800 disabled:opacity-50"
-          >
-            <Trash2 className="h-4 w-4 mr-2" />
-            {deleting ? 'Excluindo...' : 'Excluir'}
-          </button>
-        </div> */}
       </div>
 
       {/* Informações da Empresa */}
@@ -209,7 +197,6 @@ const CompanyDetailPage: React.FC = () => {
         <div>
           <QueueJobs companyId={company.id!} />
           
-          {/* Informações da Fila */}
           <div className="card mt-6">
             <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
               <AlertCircle className="h-5 w-5 mr-2 text-blue-600" />

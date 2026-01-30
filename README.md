@@ -75,7 +75,7 @@ A arquitetura segue o padrão:
 
 Antes de rodar o projeto, é necessário ter instalado:
 
-- Node.js (>= 20)
+- Node.js (>= 22)
 - Docker
 - Docker Compose
 - Conta no Firebase (Firestore habilitado)
@@ -97,7 +97,7 @@ Salvar o arquivo como:
 
 Colocar em:
 
--- backend/src/firebase-key.json
+-- backend/firebase-key.json
 
 > ⚠️ Este arquivo está no .gitignore e não deve ser versionado.
 
@@ -107,21 +107,30 @@ Colocar em:
 
 - Criar o arquivo:
 
-backend/.env
+backend/.env.docker
 
 Com o seguinte conteúdo:
 
 ```env
+PORT=3000
 REDIS_HOST=redis
-REDIS_PORT=6379
+FIREBASE_KEY_PATH=/app/firebase-key.json
 ```
+frontend/.env.docker
+
+Com o seguinte conteúdo:
+
+```env
+VITE_API_URL=http://api:3000
+```
+
 ▶️ Como Executar o Projeto
 
 Subir toda a aplicação com Docker
 
 ## Na raiz do projeto:
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 ## Após subir os containers:
 
@@ -133,12 +142,11 @@ Frontend: http://localhost:5173
 
 ### Criar empresa
 POST /api/companies
-
 Body:
 ```json
 {
   "razaoSocial": "Empresa Teste",
-  "cnpj": "123456789",
+  "cnpj": "50404088000114",
   "dataInicio": "2026-01-01",
   "dataFim": "2026-12-31"
 }
@@ -146,9 +154,11 @@ Body:
 -- Listar empresas
 GET /api/companies
 
+-- Buscar empresa por empresa
+GET /api/companies/:companyId
+
 -- Enviar job para empresa
 POST /api/companies/:companyId/jobs
-
 Body:
 ```json
 {
@@ -156,12 +166,16 @@ Body:
 }
 ```
 
+-- Buscar job por empresa
+GET /api/companies/:companyId/jobs
+
 ## 🖥️ Frontend
 O frontend permite:
 
 -- Cadastro de empresas
 -- Listagem de empresas
 -- Envio de jobs para processamento
+-- Visualização de jobs e empresa
 -- A comunicação com o backend é realizada via API REST
 
 ## 🔄 Fluxo de Processamento
@@ -176,6 +190,26 @@ A tarefa é processada de forma assíncrona
 Este fluxo garante escalabilidade e desacoplamento entre requisições e processamento.
 
 ## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
+
+- Criar o arquivo:
+
+backend/.env
+
+Com o seguinte conteúdo:
+
+```env
+PORT=3000
+REDIS_HOST=localhost
+FIREBASE_KEY_PATH=./firebase-key.json
+```
+frontend/.env.docker
+
+Com o seguinte conteúdo:
+
+```env
+VITE_API_BASE_URL=http://localhost:3000/api
+```
+
 Backend
 ```bash
 cd backend

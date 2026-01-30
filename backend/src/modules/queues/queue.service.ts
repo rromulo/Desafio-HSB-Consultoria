@@ -7,7 +7,6 @@ export class CompanyQueueService {
 
   constructor() {
     const name = getCompanyQueueName();
-    console.log("QUEUE:", name);
   
     this.queue = new Queue(name, {
       connection: redis,
@@ -16,14 +15,12 @@ export class CompanyQueueService {
   
 
   async enqueue(name: string, data: any) {
-    console.log("ENQUEUE ON:", getCompanyQueueName());
 
     return await this.queue.add(name, data);
   }
 
   async getCompanyQueueJobs(): Promise<any[]> {
     const jobs = await this.queue.getJobs(['waiting', 'active', 'completed', 'failed'], 0, -1);
-    console.log("getCompanyQueueJobs", jobs);
     
     return Promise.all(jobs.map(async job => ({
       id: job.id,

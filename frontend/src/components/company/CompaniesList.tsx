@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {  getAllCompanies, addJobToQueue } from '../../services/Company.service';
 import type { ICompany } from '../../types/company';
-import { format, isValid, parseISO } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-// import { ptBR } from 'date-fns/locale';
 import { 
   Building2, 
   Calendar, 
@@ -79,18 +76,8 @@ const CompanyList: React.FC = () => {
   const formatDate = (dateValue?: string) => {
     if (!dateValue) return '-';
     const date = new Date(dateValue)
-    console.log(dateValue, 'DATE', date);
-      
     return date.toLocaleDateString("pt-BR")
   };
-
-  // const formatCNPJ = (cnpj: string) => {
-  //   const numbers = cnpj.replace(/\D/g, '');
-  //   if (numbers.length === 14) {
-  //     return numbers.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
-  //   }
-  //   return cnpj;
-  // };
 
   if (loading && !refreshing) {
     return (
@@ -146,7 +133,7 @@ const CompanyList: React.FC = () => {
       {error && (
         <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
           <div className="flex items-center text-yellow-800">
-            {/* <AlertCircle className="h-5 w-5 mr-2" /> */}
+            <AlertCircle className="h-5 w-5 mr-2" />
             <span>{error}</span>
           </div>
         </div>
@@ -222,7 +209,7 @@ const CompanyList: React.FC = () => {
       </div>
       {companies.length === 0 && !loading && (
         <div className="card text-center py-12">
-          {/* <Building2 className="h-16 w-16 text-gray-400 mx-auto mb-4" /> */}
+          <Building2 className="h-16 w-16 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-800 mb-2">
             Nenhuma empresa cadastrada
           </h3>

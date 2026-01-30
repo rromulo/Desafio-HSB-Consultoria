@@ -4,8 +4,6 @@ import { Building2, List } from 'lucide-react';
 
 const NavBar: React.FC = () => {
   const location = useLocation();
-  console.log('LOCATION', location);
-  
   const isActive = (path: string) => location.pathname === path;
 
   return (

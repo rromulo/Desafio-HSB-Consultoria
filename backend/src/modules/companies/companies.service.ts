@@ -26,7 +26,6 @@ export class CompaniesService {
     const doc = await docRef.get();
     const companyId = doc.id;
 
-    // Usando o método da classe de fila
     await this.companyQueue.enqueue("init", {
       companyId,
       data: { message: "Fila criada para empresa" }
@@ -47,8 +46,6 @@ export class CompaniesService {
       return {
         id: doc.id,
         ...data,
-        dataInicio: data.dataInicio?.toDate?.() || null,
-        dataFim: data.dataFim?.toDate?.() || null,
         createdAt: data.createdAt?.toDate?.() || null,
       };
     });
@@ -66,8 +63,6 @@ export class CompaniesService {
     return {
       id: doc.id,
       ...data,
-      dataInicio: data.dataInicio?.toDate?.() || null,
-      dataFim: data.dataFim?.toDate?.() || null,
       createdAt: data.createdAt?.toDate?.() || null,
     };
   }
