@@ -194,7 +194,7 @@ Body:
 
 GET /api/companies
 
-### Buscar empresa por empresa
+### Buscar por empresa
 
 GET /api/companies/:companyId
 
