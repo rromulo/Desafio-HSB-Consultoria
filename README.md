@@ -112,19 +112,18 @@ backend/.env
 Com o seguinte conteúdo:
 
 ```env
-FIREBASE_PROJECT_ID=seu_project_id
 REDIS_HOST=redis
 REDIS_PORT=6379
-
+```
 ▶️ Como Executar o Projeto
 
 Subir toda a aplicação com Docker
 
-Na raiz do projeto:
+## Na raiz do projeto:
 
-docker-compose up --build
+-- docker-compose up --build
 
-- Após subir os containers:
+## Após subir os containers:
 
 API: http://localhost:3000
 
@@ -132,9 +131,9 @@ Frontend: http://localhost:5173
 
 ## 📡 Endpoints da API
 
--- Criar empresa
+### Criar empresa
 POST /api/companies
-
+```json
 Body:
 {
   "razaoSocial": "Empresa Teste",
@@ -142,58 +141,52 @@ Body:
   "dataInicio": "2026-01-01",
   "dataFim": "2026-12-31"
 }
-
+```
 -- Listar empresas
 GET /api/companies
 
 -- Enviar job para empresa
 POST /api/companies/:companyId/jobs
-
+```json
 Body:
 {
   "task": "Processar dados"
 }
-
+```
 
 ## 🖥️ Frontend
 O frontend permite:
 
-Cadastro de empresas
-
-Listagem de empresas
-
-Envio de jobs para processamento
-
-A comunicação com o backend é realizada via API REST.
-
-A interface foi construída utilizando React, Vite e TailwindCSS.
+-- Cadastro de empresas
+-- Listagem de empresas
+-- Envio de jobs para processamento
+-- A comunicação com o backend é realizada via API REST
 
 ## 🔄 Fluxo de Processamento
 
-O usuário cadastra uma empresa
-
-A empresa é salva no Firestore
-
-Um job é enviado para a fila no Redis
-
-O Worker consome a fila via BullMQ
+1. O usuário cadastra uma empresa
+2. A empresa é salva no Firestore
+3. Um job é enviado para a fila no Redis
+4. O Worker consome a fila via BullMQ
 
 A tarefa é processada de forma assíncrona
 
 Este fluxo garante escalabilidade e desacoplamento entre requisições e processamento.
 
 ## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
--- Backend
+Backend
+```bash
 cd backend
 npm install
 npm run dev:api
 npm run dev:worker
-
--- Frontend
+```
+Frontend
+```bash
 cd frontend
 npm install
 npm run dev
-
+```
 ## 📌 Decisões Técnicas
 
 Arquitetura em camadas para facilitar manutenção
