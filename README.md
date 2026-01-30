@@ -146,12 +146,12 @@ Frontend: http://localhost:5173
 ### 📌 Rodando o Projeto sem Docker (Ambiente Local)
 
 Este projeto utiliza Redis para gerenciamento de filas e processamento assíncrono (BullMQ + Worker).
-Por isso, é obrigatório ter o Redis em execução, mesmo ao rodar o projeto sem Docker.
+Por isso, é obrigatório ter o Redis em execução, mesmo ao rodar o projeto sem Docker Compose.
 
 Caso você não utilize o docker-compose, siga as instruções abaixo.
 ### ⚙️ Opção 1 — Rodando o Redis com Docker (Recomendado)
 
-Mesmo que você não utilize Docker para o projeto inteiro, é recomendado usar Docker apenas para o Redis.
+Mesmo que você não utilize Docker Compose para o projeto inteiro, é recomendado usar Docker apenas para o Redis.
 
 - Execute o comando:
 ```bash
