@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7
+    container_name: desafio-redis
+    ports:
+      - "6379:6379"
+    restart: always
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/src/firebase-key.json:/app/firebase-key.json
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.worker
+    depends_on:
+      - redis
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/src/firebase-key.json:/app/firebase-key.json
