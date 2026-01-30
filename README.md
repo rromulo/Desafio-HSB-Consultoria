@@ -196,11 +196,11 @@ GET /api/companies
 
 ### Buscar por empresa
 
-GET /api/companies/:companyId
+GET /api/companies/{companyId}
 
 ### Enviar job para empresa
 
-POST /api/companies/:companyId/jobs
+POST /api/companies/{companyId}/jobs
 
 Body:
 ```json
@@ -211,7 +211,7 @@ Body:
 
 ### Buscar job por empresa
 
-GET /api/companies/:companyId/jobs
+GET /api/companies/{companyId}/jobs
 
 ## 🖥️ Frontend
 O frontend permite:
