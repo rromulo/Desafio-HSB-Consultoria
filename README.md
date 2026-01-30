@@ -51,6 +51,7 @@ Responsável por:
 
 ### 📁 Estrutura do Projeto
 
+```text
 backend/
 ├─ src/
 │ ├─ api/
@@ -65,7 +66,7 @@ frontend/
 │ ├─ components/
 │ ├─ pages/
 │ └─ services/
-
+```
 
 A arquitetura segue o padrão:
 
@@ -151,14 +152,18 @@ Body:
   "dataFim": "2026-12-31"
 }
 ```
--- Listar empresas
+- Listar empresas
+
 GET /api/companies
 
--- Buscar empresa por empresa
+- Buscar empresa por empresa
+
 GET /api/companies/:companyId
 
--- Enviar job para empresa
+- Enviar job para empresa
+
 POST /api/companies/:companyId/jobs
+
 Body:
 ```json
 {
@@ -166,17 +171,18 @@ Body:
 }
 ```
 
--- Buscar job por empresa
+- Buscar job por empresa
+
 GET /api/companies/:companyId/jobs
 
 ## 🖥️ Frontend
 O frontend permite:
 
--- Cadastro de empresas
--- Listagem de empresas
--- Envio de jobs para processamento
--- Visualização de jobs e empresa
--- A comunicação com o backend é realizada via API REST
+- Cadastro de empresas
+- Listagem de empresas
+- Envio de jobs para processamento
+- Visualização de jobs e empresa
+- A comunicação com o backend é realizada via API REST
 
 ## 🔄 Fluxo de Processamento
 
@@ -191,7 +197,7 @@ Este fluxo garante escalabilidade e desacoplamento entre requisições e process
 
 ## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
 
-- Criar o arquivo:
+Criar o arquivo:
 
 backend/.env
 
