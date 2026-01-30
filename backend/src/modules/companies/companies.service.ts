@@ -41,9 +41,34 @@ export class CompaniesService {
   async listCompanies() {
     const snapshot = await this.collection.get();
 
-    return snapshot.docs.map((doc) => ({
+    return snapshot.docs.map((doc) => {
+      const data = doc.data();
+    
+      return {
+        id: doc.id,
+        ...data,
+        dataInicio: data.dataInicio?.toDate?.() || null,
+        dataFim: data.dataFim?.toDate?.() || null,
+        createdAt: data.createdAt?.toDate?.() || null,
+      };
+    });
+    
+  }
+
+  async listCompanyById(companyId: string) {
+    const doc = await this.collection.doc(companyId).get();
+    
+    if(!doc.exists) return null
+
+    const data = doc.data();
+    if(!data) return null
+
+    return {
       id: doc.id,
-      ...doc.data(),
-    }));
+      ...data,
+      dataInicio: data.dataInicio?.toDate?.() || null,
+      dataFim: data.dataFim?.toDate?.() || null,
+      createdAt: data.createdAt?.toDate?.() || null,
+    };
   }
 }

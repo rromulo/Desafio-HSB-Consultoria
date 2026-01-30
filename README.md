@@ -91,13 +91,13 @@ Antes de rodar o projeto, é necessário ter instalado:
 
 Após isso:
 
-- Salvar o arquivo como:
+Salvar o arquivo como:
 
-firebase-key.json
+-- firebase-key.json
 
-- Colocar em:
+Colocar em:
 
-backend/src/firebase-key.json
+-- backend/src/firebase-key.json
 
 > ⚠️ Este arquivo está no .gitignore e não deve ser versionado.
 
@@ -120,9 +120,9 @@ REDIS_PORT=6379
 Subir toda a aplicação com Docker
 
 ## Na raiz do projeto:
-
--- docker-compose up --build
-
+```bash
+docker-compose up --build
+```
 ## Após subir os containers:
 
 API: http://localhost:3000
@@ -133,8 +133,9 @@ Frontend: http://localhost:5173
 
 ### Criar empresa
 POST /api/companies
-```json
+
 Body:
+```json
 {
   "razaoSocial": "Empresa Teste",
   "cnpj": "123456789",
@@ -147,8 +148,9 @@ GET /api/companies
 
 -- Enviar job para empresa
 POST /api/companies/:companyId/jobs
-```json
+
 Body:
+```json
 {
   "task": "Processar dados"
 }
@@ -214,7 +216,6 @@ Variáveis de ambiente são utilizadas para configuração
 Desenvolvido por:
 
 Romulo Rodrigues da Silva
-Desenvolvedor Fullstack
 
 📬 Contato
 

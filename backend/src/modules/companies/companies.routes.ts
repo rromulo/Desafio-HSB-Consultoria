@@ -9,6 +9,7 @@ const companiesController = new CompaniesController(companiesService);
 
 router.post("/companies", companiesController.createCompany);
 router.get("/companies", companiesController.listCompanies);
+router.get("/companies/:companyId", companiesController.listCompanyById);
 router.post("/companies/:companyId/jobs", companiesController.enqueueJob);
 
 export default router;

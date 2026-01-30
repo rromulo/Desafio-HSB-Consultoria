@@ -11,14 +11,16 @@ export class QueueController {
 
   listJobs = async (req: Request, res: Response) => {
     try {
+      
       const { companyId } = req.params;
+      console.log('LIST JOBS CHAMADO', companyId);
 
       if (!companyId) {
         return res.status(400).json({ error: "O parâmetro companyId é obrigatório." });
       }
 
       const jobs = await this.companyQueue.getCompanyQueueJobs();
-      
+      console.log('LIST JOBS ', jobs);
       const filteredJobs = jobs.filter(job => job.data?.companyId === companyId);
 
       return res.json(filteredJobs);

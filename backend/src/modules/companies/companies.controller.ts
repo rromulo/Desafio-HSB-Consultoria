@@ -29,6 +29,21 @@ export class CompaniesController {
     }
   }
 
+  listCompanyById = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { companyId } = req.params
+      
+      const company = await this.companiesService.listCompanyById(companyId as string);
+      if(!company) {
+        res.status(404).json({error: 'Empresa não encontrada'})
+      }
+
+      res.json(company)
+    } catch (error) {
+      res.status(500).json({error: 'Erro interno do servidor'})
+    }
+  }
+
   enqueueJob = async (req: Request, res: Response) => {
     try {
       const { companyId } = req.params;

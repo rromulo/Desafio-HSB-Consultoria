@@ -7,26 +7,42 @@ services:
     ports:
       - "6379:6379"
     restart: always
+
+
   api:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: desafio-api
     ports:
       - "3000:3000"
     depends_on:
       - redis
     env_file:
-      - ./backend/.env
+      - ./backend/.env.docker
     volumes:
-      - ./backend/src/firebase-key.json:/app/firebase-key.json
+      - ./backend/firebase-key.json:/app/firebase-key.json
+
 
   worker:
     build:
       context: ./backend
       dockerfile: Dockerfile.worker
+    container_name: desafio-worker
     depends_on:
       - redis
     env_file:
-      - ./backend/.env
+      - ./backend/.env.docker
     volumes:
-      - ./backend/src/firebase-key.json:/app/firebase-key.json
+      - ./backend/firebase-key.json:/app/firebase-key.json
+
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: desafio-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
