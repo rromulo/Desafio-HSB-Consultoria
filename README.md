@@ -94,11 +94,13 @@ Após isso:
 
 Salvar o arquivo como:
 
--- firebase-key.json
+```text
+firebase-key.json
+```
 
 Colocar em:
 
--- backend/firebase-key.json
+- backend/firebase-key.json
 
 > ⚠️ Este arquivo está no .gitignore e não deve ser versionado.
 
@@ -106,9 +108,9 @@ Colocar em:
 
 ## 🛠️ Configuração das Variáveis de Ambiente
 
-- Criar o arquivo:
+Criar o arquivo:
 
-backend/.env.docker
+- backend/.env.docker
 
 Com o seguinte conteúdo:
 
@@ -117,7 +119,7 @@ PORT=3000
 REDIS_HOST=redis
 FIREBASE_KEY_PATH=/app/firebase-key.json
 ```
-frontend/.env.docker
+- frontend/.env.docker
 
 Com o seguinte conteúdo:
 
@@ -139,10 +141,46 @@ API: http://localhost:3000
 
 Frontend: http://localhost:5173
 
+## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
+
+Criar o arquivo:
+
+backend/.env
+
+Com o seguinte conteúdo:
+
+```env
+PORT=3000
+REDIS_HOST=localhost
+FIREBASE_KEY_PATH=./firebase-key.json
+```
+frontend/.env
+
+Com o seguinte conteúdo:
+
+```env
+VITE_API_BASE_URL=http://localhost:3000/api
+```
+
+Backend
+```bash
+cd backend
+npm install
+npm run dev:api
+npm run dev:worker
+```
+Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
 ## 📡 Endpoints da API
 
 ### Criar empresa
 POST /api/companies
+
 Body:
 ```json
 {
@@ -195,40 +233,7 @@ A tarefa é processada de forma assíncrona
 
 Este fluxo garante escalabilidade e desacoplamento entre requisições e processamento.
 
-## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
 
-Criar o arquivo:
-
-backend/.env
-
-Com o seguinte conteúdo:
-
-```env
-PORT=3000
-REDIS_HOST=localhost
-FIREBASE_KEY_PATH=./firebase-key.json
-```
-frontend/.env.docker
-
-Com o seguinte conteúdo:
-
-```env
-VITE_API_BASE_URL=http://localhost:3000/api
-```
-
-Backend
-```bash
-cd backend
-npm install
-npm run dev:api
-npm run dev:worker
-```
-Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
 ## 📌 Decisões Técnicas
 
 Arquitetura em camadas para facilitar manutenção
