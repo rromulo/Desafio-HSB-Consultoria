@@ -25,8 +25,8 @@ const QueueJobs: React.FC<QueueJobsProps> = ({ companyId }) => {
 
   useEffect(() => {
     loadJobs();
-    // const interval = setInterval(loadJobs, 3000);
-    // return () => clearInterval(interval);
+    const interval = setInterval(loadJobs, 5000);
+    return () => clearInterval(interval);
   }, [companyId]);
 
   const loadJobs = async () => {
