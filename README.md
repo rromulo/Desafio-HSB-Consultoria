@@ -190,15 +190,15 @@ Body:
   "dataFim": "2026-12-31"
 }
 ```
-- Listar empresas
+### Listar empresas
 
 GET /api/companies
 
-- Buscar empresa por empresa
+### Buscar empresa por empresa
 
 GET /api/companies/:companyId
 
-- Enviar job para empresa
+### Enviar job para empresa
 
 POST /api/companies/:companyId/jobs
 
@@ -209,7 +209,7 @@ Body:
 }
 ```
 
-- Buscar job por empresa
+### Buscar job por empresa
 
 GET /api/companies/:companyId/jobs
 
