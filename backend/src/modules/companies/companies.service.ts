@@ -1,5 +1,6 @@
+// companies.service.ts
 import { db } from "../../config/firebase";
-import { getCompanyQueue } from '../queues/queue.service';
+import { CompanyQueue } from '../queues/queue.service';
 
 type CreateCompanyDTO = {
   razaoSocial: string;
@@ -8,38 +9,41 @@ type CreateCompanyDTO = {
   dataFim: string;
 };
 
-const collection = db.collection("companies");
+export class CompaniesService {
+  private collection = db.collection("companies");
+  private companyQueue: CompanyQueue;
 
-export async function createCompanyService(data: CreateCompanyDTO) {
-  const docRef = await collection.add({
-    ...data,
-    createdAt: new Date(),
-  });
+  constructor() {
+    this.companyQueue = new CompanyQueue();
+  }
 
-  const doc = await docRef.get();
+  async createCompany(data: CreateCompanyDTO) {
+    const docRef = await this.collection.add({
+      ...data,
+      createdAt: new Date(),
+    });
 
-  const companyId = doc.id;
+    const doc = await docRef.get();
+    const companyId = doc.id;
 
-  const queue = getCompanyQueue();
+    // Usando o método da classe de fila
+    await this.companyQueue.enqueue("init", {
+      companyId,
+      data: { message: "Fila criada para empresa" }
+    });
 
-  await queue.add("init", {
-    companyId,
-    data:{
-      message: "Fila criada para empresa"
-    }
-  })
+    return {
+      id: doc.id,
+      ...doc.data(),
+    };
+  }
 
-  return {
-    id: doc.id,
-    ...doc.data(),
-  };
-}
+  async listCompanies() {
+    const snapshot = await this.collection.get();
 
-export async function listCompaniesService() {
-  const snapshot = await collection.get();
-
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  }
 }

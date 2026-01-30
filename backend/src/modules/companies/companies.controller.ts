@@ -1,33 +1,48 @@
+// companies.controller.ts
 import { Request, Response } from "express";
-import { createCompanyService, listCompaniesService } from "./companies.service";
-import { getCompanyQueue } from '../queues/queue.service';
+import { CompaniesService } from "./companies.service";
+import { CompanyQueue } from '../queues/queue.service';
 
-export async function createCompany(req: Request, res: Response) {
-  const data = req.body;
+export class CompaniesController {
+  // private companiesService: CompaniesService;
+  private companyQueue: CompanyQueue;
 
-  const company = await createCompanyService(data);
+  constructor(private readonly companiesService: CompaniesService) {
+    this.companyQueue = new CompanyQueue();
+  }
 
-  return res.status(201).json(company);
-}
+  createCompany = async (req: Request, res: Response) => {
+    try {
+      const data = req.body;
+      const company = await this.companiesService.createCompany(data);
+      return res.status(201).json(company);
+    } catch (error) {
+      return res.status(500).json({ error: "Erro ao criar empresa" });
+    }
+  }
 
-export async function listCompanies(req: Request, res: Response) {
-  const companies = await listCompaniesService();
+  listCompanies = async (req: Request, res: Response) => {
+    try {
+      const companies = await this.companiesService.listCompanies();
+      return res.json(companies);
+    } catch (error) {
+      return res.status(500).json({ error: "Erro ao listar empresas" });
+    }
+  }
 
-  return res.json(companies);
-}
+  enqueueJob = async (req: Request, res: Response) => {
+    try {
+      const { companyId } = req.params;
+      const data = req.body;
 
-export async function enqueueJob(req: Request, res: Response) {
-  const { companyId } = req.params;
-  const data = req.body;
+      await this.companyQueue.enqueue("task", {
+        companyId,
+        data
+      });
 
-  const queue = getCompanyQueue();
-
-  await queue.add("task", {
-    companyId,
-    data
-  });
-
-  return res.json({
-    message: "Job enviado para fila",
-  });
+      return res.json({ message: "Job enviado para fila" });
+    } catch (error) {
+      return res.status(500).json({ error: "Erro ao enviar para fila" });
+    }
+  }
 }

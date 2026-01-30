@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import companyRoutes from "../modules/companies/companies.routes";
+import queueRoutes from "../modules/queues/queue.routes"
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api", companyRoutes);
+app.use("/api", queueRoutes);
 
 const PORT = process.env.PORT || 3000;
 

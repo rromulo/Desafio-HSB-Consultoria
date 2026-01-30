@@ -1,11 +1,14 @@
 import { Router } from "express";
-import { createCompany, listCompanies } from "./companies.controller";
-import { enqueueJob } from './companies.controller';
+import { CompaniesController } from "./companies.controller";
+import { CompaniesService } from './companies.service';
+// import { enqueueJob } from './companies.controller';
 
 const router = Router();
+const companiesService = new CompaniesService
+const companiesController = new CompaniesController(companiesService);
 
-router.post("/companies", createCompany);
-router.get("/companies", listCompanies);
-router.post("/companies/:companyId/jobs", enqueueJob);
+router.post("/companies", companiesController.createCompany);
+router.get("/companies", companiesController.listCompanies);
+router.post("/companies/:companyId/jobs", companiesController.enqueueJob);
 
 export default router;
