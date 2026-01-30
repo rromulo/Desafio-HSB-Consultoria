@@ -1,14 +1,13 @@
 // companies.controller.ts
 import { Request, Response } from "express";
 import { CompaniesService } from "./companies.service";
-import { CompanyQueue } from '../queues/queue.service';
+import { CompanyQueueService } from '../queues/queue.service';
 
 export class CompaniesController {
-  // private companiesService: CompaniesService;
-  private companyQueue: CompanyQueue;
+  private companyQueue: CompanyQueueService;
 
   constructor(private readonly companiesService: CompaniesService) {
-    this.companyQueue = new CompanyQueue();
+    this.companyQueue = new CompanyQueueService();
   }
 
   createCompany = async (req: Request, res: Response) => {

@@ -1,6 +1,6 @@
 // companies.service.ts
 import { db } from "../../config/firebase";
-import { CompanyQueue } from '../queues/queue.service';
+import { CompanyQueueService } from '../queues/queue.service';
 
 type CreateCompanyDTO = {
   razaoSocial: string;
@@ -11,10 +11,10 @@ type CreateCompanyDTO = {
 
 export class CompaniesService {
   private collection = db.collection("companies");
-  private companyQueue: CompanyQueue;
+  private companyQueue: CompanyQueueService;
 
   constructor() {
-    this.companyQueue = new CompanyQueue();
+    this.companyQueue = new CompanyQueueService();
   }
 
   async createCompany(data: CreateCompanyDTO) {

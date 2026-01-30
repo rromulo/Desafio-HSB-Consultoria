@@ -1,12 +1,12 @@
 // queue.controller.ts
 import { Request, Response } from "express";
-import { CompanyQueue } from "./queue.service";
+import { CompanyQueueService } from "./queue.service";
 
 export class QueueController {
-  private companyQueue: CompanyQueue;
+  private companyQueue: CompanyQueueService;
 
   constructor() {
-    this.companyQueue = new CompanyQueue();
+    this.companyQueue = new CompanyQueueService();
   }
 
   listJobs = async (req: Request, res: Response) => {

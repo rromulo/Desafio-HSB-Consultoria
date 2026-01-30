@@ -2,7 +2,7 @@ import { Queue } from "bullmq";
 import { redis } from "../../config/redis";
 import { getCompanyQueueName } from './queue.utils';
 
-export class CompanyQueue {
+export class CompanyQueueService {
   private queue: Queue;
 
   constructor() {
