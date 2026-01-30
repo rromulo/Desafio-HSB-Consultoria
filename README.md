@@ -143,6 +143,30 @@ Frontend: http://localhost:5173
 
 ## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
 
+### 📌 Rodando o Projeto sem Docker (Ambiente Local)
+
+Este projeto utiliza Redis para gerenciamento de filas e processamento assíncrono (BullMQ + Worker).
+Por isso, é obrigatório ter o Redis em execução, mesmo ao rodar o projeto sem Docker.
+
+Caso você não utilize o docker-compose, siga as instruções abaixo.
+### ⚙️ Opção 1 — Rodando o Redis com Docker (Recomendado)
+
+Mesmo que você não utilize Docker para o projeto inteiro, é recomendado usar Docker apenas para o Redis.
+
+- Execute o comando:
+```bash
+docker run -d \
+  --name redis-local \
+  -p 6379:6379 \
+  redis:7
+
+```
+Após isso, o Redis ficará disponível em:
+```text
+localhost:6379
+```
+
+
 Criar o arquivo:
 
 backend/.env
