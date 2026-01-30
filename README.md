@@ -141,9 +141,9 @@ API: http://localhost:3000
 
 Frontend: http://localhost:5173
 
-## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker)
+## 🧪 Execução em Ambiente de Desenvolvimento (Sem Docker Compose)
 
-### 📌 Rodando o Projeto sem Docker (Ambiente Local)
+### 📌 Rodando o Projeto sem Docker Compose (Ambiente Local)
 
 Este projeto utiliza Redis para gerenciamento de filas e processamento assíncrono (BullMQ + Worker).
 Por isso, é obrigatório ter o Redis em execução, mesmo ao rodar o projeto sem Docker Compose.
