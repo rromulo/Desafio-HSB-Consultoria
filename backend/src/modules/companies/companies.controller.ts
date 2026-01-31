@@ -4,11 +4,8 @@ import { CompaniesService } from "./companies.service";
 import { CompanyQueueService } from '../queues/queue.service';
 
 export class CompaniesController {
-  private companyQueue: CompanyQueueService;
 
-  constructor(private readonly companiesService: CompaniesService) {
-    this.companyQueue = new CompanyQueueService();
-  }
+  constructor(private readonly companiesService: CompaniesService) {}
 
   createCompany = async (req: Request, res: Response) => {
     try {
@@ -49,7 +46,9 @@ export class CompaniesController {
       const { companyId } = req.params;
       const data = req.body;
 
-      await this.companyQueue.enqueue("task", {
+      const queue = new CompanyQueueService(companyId as string);
+
+      await queue.enqueue("task", {
         companyId,
         data
       });

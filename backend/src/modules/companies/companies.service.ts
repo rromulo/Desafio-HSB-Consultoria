@@ -11,11 +11,6 @@ type CreateCompanyDTO = {
 
 export class CompaniesService {
   private collection = db.collection("companies");
-  private companyQueue: CompanyQueueService;
-
-  constructor() {
-    this.companyQueue = new CompanyQueueService();
-  }
 
   async createCompany(data: CreateCompanyDTO) {
     const docRef = await this.collection.add({
@@ -26,7 +21,9 @@ export class CompaniesService {
     const doc = await docRef.get();
     const companyId = doc.id;
 
-    await this.companyQueue.enqueue("init", {
+    const queue = new CompanyQueueService(companyId);
+
+    await queue.enqueue("init", {
       companyId,
       data: { message: "Fila criada para empresa" }
     });

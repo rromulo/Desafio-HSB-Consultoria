@@ -64,8 +64,9 @@ const CompanyList: React.FC = () => {
 
     try {
       await addJobToQueue(companyId, task, {
-        message: `Tarefa ${task} enviada via frontend`,
-        timestamp: new Date().toISOString()
+        message: `Tarefa manual: ${task}`,
+        addedAt: new Date().toISOString(),
+        source: 'frontend'
       });
       alert('Tarefa adicionada à fila com sucesso!');
     } catch (err) {

@@ -5,9 +5,9 @@ import { getCompanyQueueName } from './queue.utils';
 export class CompanyQueueService {
   private queue: Queue;
 
-  constructor() {
-    const name = getCompanyQueueName();
-  
+  constructor(companyId: string) {
+    const name = getCompanyQueueName(companyId);
+
     this.queue = new Queue(name, {
       connection: redis,
     });
