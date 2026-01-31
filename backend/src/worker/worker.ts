@@ -4,7 +4,7 @@ import IORedis from 'ioredis';
 
 /* Cliente separado pra inspeção */
 const redisClient = new IORedis({
-  host: process.env.REDIS_HOST || 'redis',
+  host: process.env.REDIS_HOST || 'localhost',
   port: 6379,
 });
 
