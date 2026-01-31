@@ -291,6 +291,6 @@ Romulo Rodrigues da Silva
 Em caso de dúvidas, sugestões ou feedback, fique à vontade para entrar em contato.
 
 email: rromulo.silva21@gmail.com
-telefone: (84) 9 8181-4587
+telefone: (84) 9 8181-3587
 
 ---
