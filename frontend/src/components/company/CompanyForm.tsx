@@ -42,6 +42,7 @@ export default function CompanyForm({ onSuccess }: CompanyFormProps) {
     if (!formData.dataInicio) errors.dataInicio = 'Data de início é obrigatória';
     
     setFieldErrors(errors);
+    
     return Object.keys(errors).length === 0;
   };
 

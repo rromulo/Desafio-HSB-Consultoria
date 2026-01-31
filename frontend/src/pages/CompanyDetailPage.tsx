@@ -49,14 +49,6 @@ const CompanyDetailPage: React.FC = () => {
     return format(new Date(dateString), "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
   };
 
-  const formatCNPJ = (cnpj: string) => {
-    const numbers = cnpj.replace(/\D/g, '');
-    if (numbers.length === 14) {
-      return numbers.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
-    }
-    return cnpj;
-  };
-
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
@@ -135,7 +127,7 @@ const CompanyDetailPage: React.FC = () => {
                 <div>
                   <p className="text-sm text-gray-500">CNPJ</p>
                   <p className="font-mono text-gray-800 bg-gray-50 p-2 rounded mt-1">
-                    {formatCNPJ(company.cnpj)}
+                    {company.cnpj}
                   </p>
                 </div>
               </div>
