@@ -8,7 +8,6 @@ services:
       - "6379:6379"
     restart: always
 
-
   api:
     build:
       context: ./backend
@@ -23,7 +22,6 @@ services:
     volumes:
       - ./backend/firebase-key.json:/app/firebase-key.json
 
-
   worker:
     build:
       context: ./backend
@@ -36,13 +34,10 @@ services:
     volumes:
       - ./backend/firebase-key.json:/app/firebase-key.json
 
-
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        VITE_API_BASE_URL: http://api:3000/api
     container_name: desafio-frontend
     ports:
       - "5173:80"
