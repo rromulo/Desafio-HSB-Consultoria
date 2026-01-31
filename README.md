@@ -108,7 +108,7 @@ Colocar em:
 
 ## 🛠️ Configuração das Variáveis de Ambiente
 
-Criar o arquivo:
+Já existem dois arquivos no frontend e backend:
 
 - backend/.env.docker
 
@@ -124,7 +124,7 @@ FIREBASE_KEY_PATH=/app/firebase-key.json
 Com o seguinte conteúdo:
 
 ```env
-VITE_API_URL=http://api:3000
+VITE_API_BASE_URL=/api
 ```
 
 ▶️ Como Executar o Projeto
