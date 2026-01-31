@@ -85,7 +85,7 @@ Antes de rodar o projeto, é necessário ter instalado:
 
 ## 🔑 Configuração do Firebase
 
-1. Criar um projeto no Firebase
+1. Criar um projeto no Firebase: http://console.firebase.google.com
 2. Ativar o Firestore
 3. Gerar uma chave de serviço (Service Account)
 4. Baixar o arquivo JSON
