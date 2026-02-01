@@ -67,9 +67,7 @@ frontend/
 │ ├─ pages/
 │ └─ services/
 ```
-
-A arquitetura segue o padrão:
-
+**1. Clone o repositório**
 ---
 
 ## ⚙️ Pré-requisitos
